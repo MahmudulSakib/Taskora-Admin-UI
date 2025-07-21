@@ -39,7 +39,10 @@ export default function SubscriptionAdminPanel() {
     try {
       await axios.post(
         "https://taskora-admin-backend.onrender.com/admin/ai-subscriptions",
-        form
+        form,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Plan created!");
       setForm({ title: "", description: "", duration: "", price: "" });
@@ -52,7 +55,10 @@ export default function SubscriptionAdminPanel() {
   const handleDelete = async (id: string) => {
     try {
       await axios.delete(
-        `https://taskora-admin-backend.onrender.com/admin/ai-subscriptions/${id}`
+        `https://taskora-admin-backend.onrender.com/admin/ai-subscriptions/${id}`,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Deleted!");
       fetchPlans();

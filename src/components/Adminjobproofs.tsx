@@ -56,7 +56,10 @@ export default function AdminJobProofs() {
   const fetchProofs = async () => {
     try {
       const res = await axios.get(
-        "https://taskora-admin-backend.onrender.com/admin/job-proofs"
+        "https://taskora-admin-backend.onrender.com/admin/job-proofs",
+        {
+          withCredentials: true,
+        }
       );
       setProofs(res.data);
       const completed: { [key: string]: boolean } = {};
@@ -82,6 +85,9 @@ export default function AdminJobProofs() {
         {
           status,
           bonusAmount: amount || "0",
+        },
+        {
+          withCredentials: true,
         }
       );
       toast.success("Proof updated successfully.");

@@ -26,7 +26,10 @@ export default function QuizSubmissionsAdmin() {
   const fetchSubmissions = async (currentPage = 1) => {
     try {
       const res = await axios.get(
-        `https://taskora-admin-backend.onrender.com/admin/quiz-submissions?page=${currentPage}&limit=50`
+        `https://taskora-admin-backend.onrender.com/admin/quiz-submissions?page=${currentPage}&limit=50`,
+        {
+          withCredentials: true,
+        }
       );
       setSubmissions(res.data?.data || []);
       setTotalPages(res.data?.totalPages || 1);
@@ -64,6 +67,9 @@ export default function QuizSubmissionsAdmin() {
         {
           status,
           bonusAmount: bonus,
+        },
+        {
+          withCredentials: true,
         }
       );
       toast.success("Updated!");

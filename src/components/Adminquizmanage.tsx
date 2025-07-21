@@ -29,7 +29,10 @@ export default function QuizAdminPanel() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://taskora-admin-backend.onrender.com/admin/all-quizzes?page=${currentPage}&limit=50`
+        `https://taskora-admin-backend.onrender.com/admin/all-quizzes?page=${currentPage}&limit=50`,
+        {
+          withCredentials: true,
+        }
       );
       setQuizzes(res.data?.data || []);
       setTotalPages(res.data?.totalPages || 1);
@@ -57,6 +60,9 @@ export default function QuizAdminPanel() {
           optionC: form.C,
           optionD: form.D,
           correctAnswer: form.correct,
+        },
+        {
+          withCredentials: true,
         }
       );
       toast.success("Quiz posted");
@@ -70,7 +76,10 @@ export default function QuizAdminPanel() {
   const handleDelete = async (id: string) => {
     try {
       await axios.delete(
-        `https://taskora-admin-backend.onrender.com/admin/delete-quiz/${id}`
+        `https://taskora-admin-backend.onrender.com/admin/delete-quiz/${id}`,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Quiz deleted");
       fetchQuizzes(page);
