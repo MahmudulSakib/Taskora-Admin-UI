@@ -55,7 +55,7 @@ export default function AdminPanel() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:8080/admin/log-out",
+        "https://taskora-admin-backend.onrender.com/admin/log-out",
         {},
         { withCredentials: true }
       );

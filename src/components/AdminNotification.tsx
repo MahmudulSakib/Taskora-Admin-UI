@@ -18,9 +18,12 @@ export default function AdminNotifications() {
 
   const fetchNotifications = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/admin/notifications", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://taskora-admin-backend.onrender.com/admin/notifications",
+        {
+          withCredentials: true,
+        }
+      );
       setNotifications(res.data);
     } catch {
       toast.error("Failed to fetch notifications");
@@ -35,7 +38,7 @@ export default function AdminNotifications() {
     if (!desc.trim()) return toast.error("Description required");
     try {
       await axios.post(
-        "http://localhost:8080/admin/notifications",
+        "https://taskora-admin-backend.onrender.com/admin/notifications",
         { description: desc },
         { withCredentials: true }
       );
@@ -49,9 +52,12 @@ export default function AdminNotifications() {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:8080/admin/notifications/${id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `https://taskora-admin-backend.onrender.com/admin/notifications/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       toast.success("Deleted");
       fetchNotifications();
     } catch {

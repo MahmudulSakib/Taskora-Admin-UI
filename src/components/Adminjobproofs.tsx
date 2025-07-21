@@ -55,7 +55,9 @@ export default function AdminJobProofs() {
 
   const fetchProofs = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/admin/job-proofs");
+      const res = await axios.get(
+        "https://taskora-admin-backend.onrender.com/admin/job-proofs"
+      );
       setProofs(res.data);
       const completed: { [key: string]: boolean } = {};
       res.data.forEach((proof: Proof) => {
@@ -76,7 +78,7 @@ export default function AdminJobProofs() {
     if (!status) return toast.warning("Please select a status.");
     try {
       await axios.post(
-        `http://localhost:8080/admin/job-proofs/${proofId}/action`,
+        `https://taskora-admin-backend.onrender.com/admin/job-proofs/${proofId}/action`,
         {
           status,
           bonusAmount: amount || "0",

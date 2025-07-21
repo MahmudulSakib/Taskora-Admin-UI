@@ -12,9 +12,12 @@ export default function useAdminAuth() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:8080/admin/protected-data", {
-          withCredentials: true,
-        });
+        await axios.get(
+          "https://taskora-admin-backend.onrender.com/admin/protected-data",
+          {
+            withCredentials: true,
+          }
+        );
 
         setIsAuthenticated(true);
       } catch (error) {

@@ -21,7 +21,7 @@ export default function AdminLoginPage() {
 
     try {
       await axios.post(
-        "http://localhost:8080/admin/log-in",
+        "https://taskora-admin-backend.onrender.com/admin/log-in",
         { email, password },
         { withCredentials: true }
       );

@@ -20,7 +20,7 @@ export default function SubscriptionAdminPanel() {
   const fetchPlans = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8080/admin/ai-subscriptions",
+        "https://taskora-admin-backend.onrender.com/admin/ai-subscriptions",
         {
           withCredentials: true,
         }
@@ -37,7 +37,10 @@ export default function SubscriptionAdminPanel() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post("http://localhost:8080/admin/ai-subscriptions", form);
+      await axios.post(
+        "https://taskora-admin-backend.onrender.com/admin/ai-subscriptions",
+        form
+      );
       toast.success("Plan created!");
       setForm({ title: "", description: "", duration: "", price: "" });
       fetchPlans();
@@ -48,7 +51,9 @@ export default function SubscriptionAdminPanel() {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:8080/admin/ai-subscriptions/${id}`);
+      await axios.delete(
+        `https://taskora-admin-backend.onrender.com/admin/ai-subscriptions/${id}`
+      );
       toast.success("Deleted!");
       fetchPlans();
     } catch {

@@ -27,7 +27,7 @@ export default function AdminUserWalletTable() {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:8080/admin/user/details?page=${currentPage}&limit=50&search=${query}`,
+        `https://taskora-admin-backend.onrender.com/admin/user/details?page=${currentPage}&limit=50&search=${query}`,
         { withCredentials: true }
       );
       setUsers(res.data?.data || []);

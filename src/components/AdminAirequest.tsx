@@ -38,7 +38,7 @@ export default function AdminAiSubscriptionRequests() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        "http://localhost:8080/admin/ai-subscription-requests"
+        "https://taskora-admin-backend.onrender.com/admin/ai-subscription-requests"
       );
       setRequests(res.data);
     };
@@ -48,7 +48,7 @@ export default function AdminAiSubscriptionRequests() {
   const handleStatusChange = async (id: string, newStatus: string) => {
     try {
       await axios.patch(
-        `http://localhost:8080/admin/ai-subscription-status/${id}`,
+        `https://taskora-admin-backend.onrender.com/admin/ai-subscription-status/${id}`,
         { status: newStatus }
       );
       setRequests((prev) =>

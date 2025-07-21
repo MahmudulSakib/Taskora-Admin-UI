@@ -22,9 +22,12 @@ export default function AdminVendorShipPanel() {
   }, []);
 
   const fetchRequests = async () => {
-    const res = await axios.get("http://localhost:8080/admin/vendor-requests", {
-      withCredentials: true,
-    });
+    const res = await axios.get(
+      "https://taskora-admin-backend.onrender.com/admin/vendor-requests",
+      {
+        withCredentials: true,
+      }
+    );
     setRequests(res.data);
   };
 
@@ -41,7 +44,7 @@ export default function AdminVendorShipPanel() {
   const handleStatusChange = async (id: string, status: string) => {
     try {
       await axios.patch(
-        "http://localhost:8080/admin/vendor-requests/status",
+        "https://taskora-admin-backend.onrender.com/admin/vendor-requests/status",
         { id, status },
         { withCredentials: true }
       );

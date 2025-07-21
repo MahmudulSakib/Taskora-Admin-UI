@@ -29,7 +29,7 @@ export default function AdminBonusWithdrawRequests() {
   const fetchData = async (pageNum = 1) => {
     try {
       const res = await axios.get(
-        `http://localhost:8080/admin/bonus-withdraw-requests?page=${pageNum}`,
+        `https://taskora-admin-backend.onrender.com/admin/bonus-withdraw-requests?page=${pageNum}`,
         { withCredentials: true }
       );
       setRequests(res.data.requests);
@@ -46,7 +46,7 @@ export default function AdminBonusWithdrawRequests() {
   const updateStatus = async (id: string, status: string) => {
     try {
       await axios.post(
-        `http://localhost:8080/admin/bonus-withdraw-requests/${id}/update`,
+        `https://taskora-admin-backend.onrender.com/admin/bonus-withdraw-requests/${id}/update`,
         { status },
         { withCredentials: true }
       );

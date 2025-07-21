@@ -31,9 +31,12 @@ export default function AdminUserRanks() {
   }, []);
 
   const fetchUsers = async () => {
-    const res = await axios.get("http://localhost:8080/admin/user-ranks", {
-      withCredentials: true,
-    });
+    const res = await axios.get(
+      "https://taskora-admin-backend.onrender.com/admin/user-ranks",
+      {
+        withCredentials: true,
+      }
+    );
     setUsers(res.data);
 
     const initialRanks: { [key: string]: string } = {};
@@ -50,7 +53,7 @@ export default function AdminUserRanks() {
   const handleRankSubmit = async (userId: string) => {
     const rank = parseInt(selectedRanks[userId] || "1");
     await axios.post(
-      "http://localhost:8080/admin/user-ranks",
+      "https://taskora-admin-backend.onrender.com/admin/user-ranks",
       { userId, rank },
       { withCredentials: true }
     );

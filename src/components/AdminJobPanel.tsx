@@ -263,9 +263,12 @@ export default function AdminJobPostPanel() {
   const postsPerPage = 50;
 
   const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:8080/admin/job-posts", {
-      withCredentials: true,
-    });
+    const res = await axios.get(
+      "https://taskora-admin-backend.onrender.com/admin/job-posts",
+      {
+        withCredentials: true,
+      }
+    );
     setPosts(res.data || []);
   };
 
@@ -293,7 +296,7 @@ export default function AdminJobPostPanel() {
     if (image) payload.append("image", image);
 
     await axios.put(
-      `http://localhost:8080/admin/job-posts/${editing}`,
+      `https://taskora-admin-backend.onrender.com/admin/job-posts/${editing}`,
       payload,
       {
         withCredentials: true,

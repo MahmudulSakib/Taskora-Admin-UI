@@ -49,7 +49,7 @@ export default function AdminRechargeRequests() {
   const fetchRequests = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8080/admin/mobile-recharge-requests",
+        "https://taskora-admin-backend.onrender.com/admin/mobile-recharge-requests",
         {
           withCredentials: true,
         }
@@ -71,7 +71,7 @@ export default function AdminRechargeRequests() {
   const handleStatusChange = async (id: string, newStatus: string) => {
     try {
       await axios.post(
-        "http://localhost:8080/admin/update-mobile-recharge-status",
+        "https://taskora-admin-backend.onrender.com/admin/update-mobile-recharge-status",
         { id, status: newStatus },
         { withCredentials: true }
       );

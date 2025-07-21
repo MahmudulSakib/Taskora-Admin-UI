@@ -47,10 +47,13 @@ export default function AdminDriveOfferPage() {
 
   const fetchOffers = async (pg: number) => {
     try {
-      const res = await axios.get("http://localhost:8080/admin/drive-offers", {
-        params: { limit: PAGE_LIMIT, offset: (pg - 1) * PAGE_LIMIT },
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        "https://taskora-admin-backend.onrender.com/admin/drive-offers",
+        {
+          params: { limit: PAGE_LIMIT, offset: (pg - 1) * PAGE_LIMIT },
+          withCredentials: true,
+        }
+      );
       setOffers(res.data.offers || []);
       setTotalOffers(res.data.total || 0);
     } catch (err) {
@@ -62,9 +65,13 @@ export default function AdminDriveOfferPage() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/admin/create-drive-offer", form, {
-        withCredentials: true,
-      });
+      await axios.post(
+        "https://taskora-admin-backend.onrender.com/admin/create-drive-offer",
+        form,
+        {
+          withCredentials: true,
+        }
+      );
       toast.success("Offer created");
       setForm({
         title: "",
@@ -84,7 +91,7 @@ export default function AdminDriveOfferPage() {
   const deleteOffer = async (id: string) => {
     try {
       await axios.delete(
-        `http://localhost:8080/admin/delete-drive-offer/${id}`,
+        `https://taskora-admin-backend.onrender.com/admin/delete-drive-offer/${id}`,
         {
           withCredentials: true,
         }

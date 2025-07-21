@@ -20,7 +20,7 @@ export default function AdminAddMoneyRequests() {
   const fetchRequests = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8080/admin/add-money-requests",
+        "https://taskora-admin-backend.onrender.com/admin/add-money-requests",
         { withCredentials: true }
       );
       setRequests(res.data.requests);
@@ -36,7 +36,7 @@ export default function AdminAddMoneyRequests() {
   const handleAction = async (id: string, action: "approve" | "reject") => {
     try {
       await axios.post(
-        `http://localhost:8080/admin/add-money-requests/${id}/${action}`,
+        `https://taskora-admin-backend.onrender.com/admin/add-money-requests/${id}/${action}`,
         {},
         { withCredentials: true }
       );
