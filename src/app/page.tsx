@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
       );
 
       toast.success("Login successful");
-      router.push("https://taskora-admin-ui.vercel.app/admin-dashboard");
+      router.push("/admin-dashboard");
     } catch (err: any) {
       const errorMessage = err?.response?.data?.error || "Login failed";
       toast.error(errorMessage);
