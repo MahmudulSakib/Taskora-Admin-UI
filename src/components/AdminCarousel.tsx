@@ -18,7 +18,10 @@ export default function CarouselAdminPage() {
 
   const fetchImages = async () => {
     const res = await axios.get(
-      "https://taskora-admin-backend.onrender.com/admin/carousel-images"
+      "https://taskora-admin-backend.onrender.com/admin/carousel-images",
+      {
+        withCredentials: true,
+      }
     );
     setImages(res.data);
   };
@@ -36,7 +39,10 @@ export default function CarouselAdminPage() {
     try {
       await axios.post(
         "https://taskora-admin-backend.onrender.com/admin/carousel-upload",
-        formData
+        formData,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Image uploaded!");
       setFile(null);
@@ -49,7 +55,10 @@ export default function CarouselAdminPage() {
   const handleDelete = async (id: string) => {
     try {
       await axios.delete(
-        `https://taskora-admin-backend.onrender.com/admin/carousel-images/${id}`
+        `https://taskora-admin-backend.onrender.com/admin/carousel-images/${id}`,
+        {
+          withCredentials: true,
+        }
       );
       toast.success("Image deleted");
       fetchImages();
