@@ -50,7 +50,10 @@ export default function AdminPanel() {
 
   if (loading)
     return <p className="text-center mt-20">Checking authentication...</p>;
-  if (!isAuthenticated) return null;
+  if (!loading && !isAuthenticated) {
+    router.replace("/");
+    return <p className="text-center mt-20">Redirecting to login...</p>;
+  }
 
   const handleLogout = async () => {
     try {
