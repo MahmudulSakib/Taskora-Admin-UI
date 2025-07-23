@@ -1,62 +1,40 @@
-// // /hooks/useAdminAuth.ts
-// "use client";
-
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import axios from "axios";
-
-// export default function useAdminAuth() {
-//   const router = useRouter();
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     axios
-//       .get("https://taskora-admin-backend.onrender.com/admin/me", {
-//         withCredentials: true, // ✅ ensure cookies go with the request
-//       })
-//       .then((res) => {
-//         if (res.data?.admin) {
-//           setIsAuthenticated(true);
-//         } else {
-//           router.push("/admin-login");
-//         }
-//       })
-//       .catch(() => {
-//         router.push("/admin-login"); // ⛔️ cookie not present = redirect
-//       })
-//       .finally(() => {
-//         setLoading(false);
-//       });
-//   }, [router]);
-
-//   return { isAuthenticated, loading };
-// }
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
+interface AdminProfile {
+  id: string;
+  fullName: string;
+  email: string;
+  // Add other fields if needed
+}
+
 export default function useAdminAuth() {
+  const [admin, setAdmin] = useState<AdminProfile | null>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get(
-          "https://taskora-admin-backend.onrender.com/admin/protected-data",
+        const res = await axios.get(
+          "https://taskora-admin-backend.onrender.com/admin/profile",
           {
             withCredentials: true,
           }
         );
 
-        setIsAuthenticated(true);
-      } catch (error) {
-        router.push("/");
+        if (res.status === 200 && res.data?.admin) {
+          setAdmin(res.data.admin);
+        } else {
+          setAdmin(null);
+          router.replace("/admin-login");
+        }
+      } catch (err) {
+        setAdmin(null);
+        router.replace("/admin-login");
       } finally {
         setLoading(false);
       }
@@ -65,5 +43,5 @@ export default function useAdminAuth() {
     checkAuth();
   }, [router]);
 
-  return { isAuthenticated, loading };
+  return { admin, loading, isAuthenticated: !!admin };
 }

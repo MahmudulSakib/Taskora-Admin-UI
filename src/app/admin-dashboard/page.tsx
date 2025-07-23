@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -44,16 +44,21 @@ const menuItems = [
 ];
 
 export default function AdminPanel() {
-  const { isAuthenticated, loading } = useAdminAuth();
+  const { admin, loading, isAuthenticated } = useAdminAuth();
   const [activeKey, setActiveKey] = useState<string>("dashboard");
   const router = useRouter();
 
-  if (loading)
-    return <p className="text-center mt-20">Checking authentication...</p>;
-  if (!loading && !isAuthenticated) {
-    router.replace("/");
-    return <p className="text-center mt-20">Redirecting to login...</p>;
-  }
+  // if (loading)
+  //   return <p className="text-center mt-20">Checking authentication...</p>;
+  // if (!loading && !isAuthenticated) {
+  //   router.replace("/");
+  //   return <p className="text-center mt-20">Redirecting to login...</p>;
+  // }
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      router.replace("/");
+    }
+  }, [router, loading, admin, isAuthenticated]);
 
   const handleLogout = async () => {
     try {
