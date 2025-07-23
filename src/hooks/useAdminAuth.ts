@@ -8,7 +8,6 @@ interface AdminProfile {
   id: string;
   fullName: string;
   email: string;
-  // Add other fields if needed
 }
 
 export default function useAdminAuth() {
