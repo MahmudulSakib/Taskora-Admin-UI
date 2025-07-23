@@ -44,7 +44,7 @@ const menuItems = [
 ];
 
 export default function AdminPanel() {
-  const { admin, loading, isAuthenticated } = useAdminAuth();
+  const { admin, loading } = useAdminAuth();
   const [activeKey, setActiveKey] = useState<string>("dashboard");
   const router = useRouter();
 
@@ -55,10 +55,10 @@ export default function AdminPanel() {
   //   return <p className="text-center mt-20">Redirecting to login...</p>;
   // }
   useEffect(() => {
-    if (!loading && !isAuthenticated) {
+    if (!loading && !admin) {
       router.replace("/");
     }
-  }, [router, loading, admin, isAuthenticated]);
+  }, [router, loading, admin]);
 
   const handleLogout = async () => {
     try {

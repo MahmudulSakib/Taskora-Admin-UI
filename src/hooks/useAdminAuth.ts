@@ -43,5 +43,5 @@ export default function useAdminAuth() {
     checkAuth();
   }, [router]);
 
-  return { admin, loading, isAuthenticated: !!admin };
+  return { admin, loading };
 }
